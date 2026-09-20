@@ -25,5 +25,6 @@ jobs:
             cd ~/isdi_projects/fullstack_app/frontend
             git pull origin main
             cd ~/isdi_projects/fullstack_app
-            docker compose --env-file .env.production up --build -d frontend
+            docker compose --env-file .env.production build --no-deps frontend
+            docker compose --env-file .env.production up -d --no-deps frontend
           '
