@@ -1,0 +1,16 @@
+# Development Dockerfile for the React (Vite) frontend.
+FROM node:20-slim
+
+WORKDIR /app
+
+# Install dependencies first so this layer is cached unless package.json changes
+COPY package*.json ./
+RUN npm install
+
+# Copy the rest of the app (also overridden by the bind mount in docker-compose
+# during development, so edits on your machine show up immediately)
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
